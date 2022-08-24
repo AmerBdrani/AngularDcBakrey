@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Order } from '../Models/order';
 import { of } from 'rxjs';
 import { OrderVM } from '../Models/order-vm';
+import { RequestOptions,Headers } from '@angular/common/http';
 
 
 @Injectable({
@@ -46,9 +47,10 @@ console.log(err);
 
 PutOrder(id:any,stut:any){
   
-
+    const headers = new Headers({ "Content-Type": "application/json" });
+    const options = new RequestOptions({ headers });
   
-    this.http.put<any>(this.urlid + id,stut).subscribe(res => {
+    this.http.post<any>(this.urlid + id,stut).subscribe(res => {
 
       
       this.getAllOrders();
